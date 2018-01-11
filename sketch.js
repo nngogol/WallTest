@@ -136,14 +136,26 @@ function setup(){
 
 }
 
+
+
+var isSlowTiming = false;
 function TimeBottle() {
-	
+
+	if (isSlowTiming){
+		engine.timing.timeScale = 1
+		isSlowTiming = !isSlowTiming
+	}
+	else{
+		engine.timing.timeScale = .09
+		isSlowTiming = !isSlowTiming
+		
+	}
 }
 
 function keyPressed(event){	// if key  is pressed
 	switch (event.key) {
-		
 		// punch all objects in random direction
+		case 'a': TimeBottle(); break;
 		case 'q':
 		case 'w':
 		case 'e':	boxes.forEach(x => x.RandomPunch());	break;
