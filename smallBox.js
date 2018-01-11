@@ -7,11 +7,16 @@ class smallBox{
     this.h = h
     this.options = {
       friction: 0.1
+      // ,density: .01
     }
     this.text = random(['Даниил', 'Мета', 'Земля','Слизь','Еда','Деньги','КОБ','blockchain', 'ИИ', 'Код','Чат', ])
     this.color = color(random(140,240),random(40,50),random(0,150))
+    this.colorRandom = color(random(255),random(255),random(255))
     this.matterBox = Bodies.rectangle(x, y, w, h, this.options);
     World.add(world, this.matterBox );
+    
+    // in future:
+    //this.texture = img
   }
 
   isOverEdge(){
@@ -25,6 +30,12 @@ class smallBox{
   }
 
   RandomPunch(){
+    let pos = this.matterBox.position;
+    let forceMagnitude = .005 * this.matterBox.mass;
+    Matter.Body.applyForce(this.matterBox, this.matterBox.position, { 
+      x: (forceMagnitude + Common.random() * forceMagnitude) * Common.choose([1, -1]), 
+      y: -forceMagnitude + Common.random() * -forceMagnitude
+    });
     // this.matterBox.applyForce(Matter.Vector.create(4,5), Matter.Vector.create(5,8))
   }
 
@@ -43,9 +54,22 @@ class smallBox{
       fill(this.color)
       // color
 
+      //body
+      // rect(0, 0, this.w, this.h)
+      stroke(this.colorRandom)
+      strokeWeight(3)
       rect(0, 0, this.w, this.h)
+      
+      if (this.texture) {
+        imageMode(CENTER)
+        image(this.texture, 0, 0, this.w, this.h)
+      }
+      
+      // text
       stroke(0)
+      strokeWeight(1)
       fill(255)
+      textFont(24)
       textAlign(CENTER)
       text(this.text, 0 , 0)
     pop()
