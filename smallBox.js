@@ -7,9 +7,23 @@ class smallBox{
     this.h = h
     this.options = {
       friction: 0.1
-      // ,density: .01
+      ,density: 6
+      ,mass: 5
     }
-    this.text = random(['Даниил', 'Мета', 'Земля','Слизь','Еда','Деньги','КОБ','blockchain', 'ИИ', 'Код','Чат', ])
+    this.text = random([
+    'Счастье',
+     'Bob Ross',
+     'Колобок',
+     'Курс Рубля',
+     'Гном',
+     'Акробат',
+     'Бык',
+     'JS',
+     'Клетка',
+     'Музыка',
+     'BWM',
+     'Помидорка',
+      'Радуга' ])
     this.color = color(random(140,240),random(40,50),random(0,150))
     this.colorRandom = color(random(255),random(255),random(255))
     this.matterBox = Bodies.rectangle(x, y, w, h, this.options);
@@ -66,9 +80,9 @@ class smallBox{
       }
       
       // text
-      stroke(0)
-      strokeWeight(1)
-      fill(255)
+      stroke(255, 120)
+      strokeWeight(.3)
+      noFill()
       textFont(24)
       textAlign(CENTER)
       text(this.text, 0 , 0)

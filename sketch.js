@@ -26,10 +26,15 @@ var Render = Matter.Render;
 var World = Matter.World;
 var Bodies = Matter.Bodies;
 var Common = Matter.Common;
+var Mouse = Matter.Mouse;
+var Constraint = Matter.Constraint;
+var MConstraint = Matter.MouseConstraint;
 
 var img
 var world;
 var engine;
+var mConstraint;
+var mycanvas;
 // ground boundary objects
 
 // floor
@@ -48,7 +53,7 @@ var IsRaining = true;
 
 function preload(){
 	// loads a image for box texture
-	img = loadImage('logo.jpg')
+	// img = loadImage('logo.jpg')
 }
 
 
@@ -67,41 +72,25 @@ function enableRain(selfBtn) {
 		}
 }
 
-// make a html button
-function mkBtn(label, classes, styles=[['display', 'flex']], clicked){
-	let btn = createButton(label)
-	btn.mouseClicked(() => {
-		clicked(btn)
-	})
-	// apply each style
-	styles.map( stl => {
-		btn.style(stl[0], stl[1])
-	})
-	// apply each class
-	classes.map( cls => {
-		btn.addClass(cls)
-	})
-
-	return btn
+function mouseWheel(e){
+	spawnRandom(width/2+ random(4, 5),
+							height/5+ random(4, 5),
+							random(30, 40),
+							random(50, 60));
 }
 
-
 function setup(){
-	createCanvas(600, 600)
+	mycanvas = createCanvas(600, 600)
+	mycanvas.parent("#canvasDiv")
 	// clear all objects btn
-	mkBtn("clear all objects", ['btn', 'rounded', 'btn-primary'], [['display', 'flex'], ['margin', '10px']], () => {
+	select("#clearBtn").mouseClicked(() => {
 		boxes.forEach(x => x.die())
 		boxes = []
 	})
-	
-	// move all objects randomly (just apply force)
-	mkBtn("Random Punch", ['btn', 'rounded', 'btn-primary'], [['display', 'flex'], ['margin', '10px']], () => {
-		boxes.forEach(x => x.RandomPunch())
-	})
-
-	// Start to swan objects
-	enable_rain_button = mkBtn("Rain: On", ['btn', 'rounded', 'btn-warning'], [['display', 'flex'], ['margin', '10px']], enableRain)
-
+	select("#RandomPunch").mouseClicked(() => boxes.forEach(x => x.RandomPunch()))
+	select("#enableRain").mouseClicked(enableRain)
+	enable_rain_button = select("#enableRain")
+	enable_rain_button.mouseClicked(() => enableRain(enable_rain_button))
 
 	// setup gui
 	// gui = createGui('p5.gui',700,30);
@@ -111,6 +100,19 @@ function setup(){
 	// setup physics
 	engine = Engine.create();
 	world = engine.world;
+
+	// add mouse control
+	mouseConstraint = MConstraint.create(engine, {
+			mouse: Mouse.create(mycanvas.elt),
+			constraint: {
+					stiffness: 0.2,
+					render: {
+							visible: false
+					}
+			}
+	});
+
+	World.add(world, mouseConstraint);
 
 	// setup bodies in world
 	boxes.push(new smallBox(300, 200, 22, 22))
@@ -124,8 +126,11 @@ function setup(){
 	// Rain logic
 	setInterval(() => {
 		if (IsRaining) {
-			spawnRandom(random(20,width*.8), -random([20,40, 60, 80, 10]), 70, 20)
-			spawnRandom(random(20,width*.8), -random([20,40, 60, 80, 10]), 70, 20)
+			if (boxes.length < 50) {
+				
+				spawnRandom(random(20,width*.8), -random([20,40, 60, 80, 10]), 40, 10)
+				spawnRandom(random(20,width*.8), -random([20,40, 60, 80, 10]), 70, 20)
+			}
 		}
 	},500)
 
@@ -139,9 +144,15 @@ function keyPressed(event){	// if key  is pressed
 	switch (event.key) {
 		
 		// punch all objects in random direction
-		case 'q':	boxes.forEach(x => x.RandomPunch());	break;
-		case 'w':	boxes.forEach(x => x.RandomPunch());	break;
+		case 'q':
+		case 'w':
 		case 'e':	boxes.forEach(x => x.RandomPunch());	break;
+		case 's':	boxes.forEach(x => x.die()); boxes = []; break;
+		case 'd':	spawnRandom(mouseX+ random(4, 5),
+													mouseY+ random(4, 5),
+													random(30, 60),
+													random(50, 60));
+													break;
 		// todo
 		// case 'a':	TimeBottle();	break;
 		
@@ -156,14 +167,6 @@ function keyPressed(event){	// if key  is pressed
 //     with w,h   -  width and height
 function spawnRandom(x,y,w,h){
 	boxes.push(new smallBox(x,y,w,h));
-}
-
-function mouseClicked(){
-	// spawn box where mouse is
-	spawnRandom(mouseX+ random(4, 5),
-							mouseY+ random(4, 5),
-							random(30, 60),
-							random(50, 60));
 }
 
 function draw(){
