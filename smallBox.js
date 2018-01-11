@@ -7,8 +7,8 @@ class smallBox{
     this.h = h
     this.options = {
       friction: 0.1
-      ,density: 6
-      ,mass: 5
+      // ,density: 6
+      ,mass: 1
     }
     this.text = random([
     'Счастье',
