@@ -1,30 +1,17 @@
 class smallBox{
-  constructor(x, y, w, h){
+  constructor(x, y, w, h, somecolor = color(random(140,240),random(40,50),random(0,150)), options = {
+      friction: 0.1
+      // ,density: 6
+      ,mass: 1
+    }){
 
     this.x = x
     this.y = y
     this.w = w
     this.h = h
-    this.options = {
-      friction: 0.1
-      // ,density: 6
-      ,mass: 1
-    }
-    this.text = random([
-    'Счастье',
-     'Bob Ross',
-     'Колобок',
-     'Курс Рубля',
-     'Гном',
-     'Акробат',
-     'Бык',
-     'JS',
-     'Клетка',
-     'Музыка',
-     'BWM',
-     'Помидорка',
-      'Радуга' ])
-    this.color = color(random(140,240),random(40,50),random(0,150))
+    this.options = options
+    this.text = random(5,5000)
+    this.color = somecolor
     this.colorRandom = color(random(255),random(255),random(255))
     this.matterBox = Bodies.rectangle(x, y, w, h, this.options);
     World.add(world, this.matterBox );
@@ -70,22 +57,22 @@ class smallBox{
 
       //body
       // rect(0, 0, this.w, this.h)
-      stroke(this.colorRandom)
+      stroke(color(255, 40))
       strokeWeight(3)
       rect(0, 0, this.w, this.h)
       
-      if (this.texture) {
-        imageMode(CENTER)
-        image(this.texture, 0, 0, this.w, this.h)
-      }
+      // if (this.texture) {
+      //   imageMode(CENTER)
+      //   image(this.texture, 0, 0, this.w, this.h)
+      // }
       
       // text
-      stroke(255, 120)
-      strokeWeight(.3)
-      noFill()
-      textFont(24)
-      textAlign(CENTER)
-      text(this.text, 0 , 0)
+      // stroke(255, 120)
+      // strokeWeight(.3)
+      // noFill()
+      // textFont(24)
+      // textAlign(CENTER)
+      // text(this.text, 0 , 0)
     pop()
   }
 }

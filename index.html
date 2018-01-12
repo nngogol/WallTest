@@ -12,60 +12,83 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/bootstrap.css">
     <style>
+        /* table of keys and their meaning */
 
-    /* table of keys and their meaning */
-    .options{
-        display: flex;
-    }
+        .options, .controls{
+            display: flex;
+        }
 
-    /* for keys */
-    .contorl-keys > div{
-        border-top: 1px solid black;
-        border-left: 1px solid black;
-        margin: 0;
-        padding: 0;
-    }
-    .contorl-keys div:nth-last-child(1){
-        border-top: 1px solid black;
-        border-left: 1px solid black;
-        border-bottom: 1px solid black;
-        margin: 0;
-        padding: 0;
-    }
 
-    /* for meaning */
-    .contorl-meaning > div{
-        border-top: 1px solid black;
-        border-right: 1px solid black;
-        margin: 0;
-        padding: 0;
-    }
+        /* for keys */
 
-    .contorl-meaning  div:nth-last-child(1){
-        border-top: 1px solid black;
-        border-right: 1px solid black;
-        border-bottom: 1px solid black;
-        margin: 0;
-        padding: 0;
-    }
-    button{
-        margin: 10px;
-    }
+        .contorl-keys>div {
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contorl-keys div:nth-last-child(1) {
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            border-bottom: 1px solid black;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* for meaning */
+
+        .contorl-meaning>div {
+            border-top: 1px solid black;
+            border-right: 1px solid black;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contorl-meaning div:nth-last-child(1) {
+            border-top: 1px solid black;
+            border-right: 1px solid black;
+            border-bottom: 1px solid black;
+            margin: 0;
+            padding: 0;
+        }
+
+        button {
+            margin: 10px;
+        }
     </style>
 
 </head>
 
 <body>
-    <h4>Hello, and welcome to <b><i>Симулятор физики</i></b></h4>
+    <h4>Hello, and welcome to
+        <b>
+            <i>Симулятор физики</i>
+        </b>
+    </h4>
     <div id="canvasDiv"></div>
     <div class="options">
         <ul class="contorl-keys">
-            <div> <b>LClick+drag</b></div>
-            <div> <b>a</b></div>
-            <div> <b>r</b></div>
-            <div> <b>q,w,e</b></div>
-            <div><b>d</b> <i>or</i> <b>mouseWheel</b></div> 
-            <div><b>s</b></div>
+            <div>
+                <b>LClick+drag</b>
+            </div>
+            <div>
+                <b>a</b>
+            </div>
+            <div>
+                <b>r</b>
+            </div>
+            <div>
+                <b>q,w,e</b>
+            </div>
+            <div>
+                <b>d</b>
+                <i>or</i>
+                <b>mouseWheel</b>
+            </div>
+            <div>
+                <b>s</b>
+            </div>
         </ul>
         <ul class="contorl-meaning">
             <div>Тянуть квадратик</div>
@@ -76,10 +99,25 @@
             <div>Удалить все </div>
         </ul>
     </div>
-    <button class="btn rounded btn-primary" id="clearBtn"> Clear All Objects</button>
-    <button class="btn rounded btn-primary" id="RandomPunch"> Punch</button>
-    <button class="btn rounded btn-warning" id="enableRain"> Rain: On</button>
+    <div class="controls">
+        <label>Масса Ядра</label>
+        <input type="range" min="1" max="20" value="5" id="massCircle" style="width:200px;">
+    </div>
+    <div>
+        <label>Сила Толчка</label>
+        <input type="range" min="1" max="20" value="5" id="punchForce" style="width:200px;">
+    </div>
+    <div>
+        <label>Ширина стенки</label>
+        <input type="range" min="1" max="20" value="5" id="WallWidth" style="width:200px;">
+    </div>
+    <div>
+        <label>Густота стенки</label>
+        <input type="range" min="1" max="20" value="5" id="WallDensity" style="width:200px;">
+    </div>
     <script src="smallBox.js" type="text/javascript"></script>
+    <script src="Wall.js" type="text/javascript"></script>
+    <script src="Circle.js" type="text/javascript"></script>
     <script src="Ground.js" type="text/javascript"></script>
     <script src="sketch.js" type="text/javascript"></script>
 </body>
