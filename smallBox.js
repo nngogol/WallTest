@@ -30,6 +30,11 @@ class smallBox{
     World.remove(world, this.matterBox);
   }
 
+  _changeDensity(densVal){
+    Body.setDensity(this.matterBox, densVal)
+    return this
+  }
+
   RandomPunch(){
     let pos = this.matterBox.position;
     let forceMagnitude = .005 * this.matterBox.mass;

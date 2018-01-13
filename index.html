@@ -96,24 +96,28 @@
             <div>Включить дождь </div>
             <div>Пнуть квадратик</div>
             <div>Добавить квадратик</div>
-            <div>Удалить все </div>
+            <div>Удалить все</div>
         </ul>
     </div>
     <div class="controls">
         <label>Масса Ядра</label>
         <input type="range" min="1" max="20" value="5" id="massCircle" style="width:200px;">
+        <span id="massCircleVal" style="width:200px;">5</span>
     </div>
     <div>
         <label>Сила Толчка</label>
         <input type="range" min="1" max="20" value="5" id="punchForce" style="width:200px;">
+        <span id="punchForceVal" style="width:200px;">5</span>
     </div>
     <div>
         <label>Ширина стенки</label>
-        <input type="range" min="1" max="20" value="5" id="WallWidth" style="width:200px;">
+        <input type="range" min="10" max="200" value="30" step="10" id="WallWidth" style="width:200px;">
+        <span id="WallWidthVal" style="width:200px;">5</span>
     </div>
     <div>
         <label>Густота стенки</label>
-        <input type="range" min="1" max="20" value="5" id="WallDensity" style="width:200px;">
+        <input type="range" min="0.001" max="10" value="1" step="0.01" id="WallDensity" style="width:200px;">
+        <span id="WallDensityVal" style="width:200px;">5</span>
     </div>
     <script src="smallBox.js" type="text/javascript"></script>
     <script src="Wall.js" type="text/javascript"></script>

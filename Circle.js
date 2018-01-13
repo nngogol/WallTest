@@ -9,6 +9,8 @@ class Circle{
       ,density: 1
       ,mass: 15
     }
+    this.punch_amount = 15
+
     this.text = random(5,5000)
     this.color = color(random(0,240),255,255)
     this.colorRandom = color(random(255),random(255),random(255))
@@ -25,14 +27,21 @@ class Circle{
     World.remove(world, this.body);
   }
 
+  changePunchForce(valuee){
+    this.punch_amount = valuee;
+  }
+
+  changeMass(valuee){
+    this.body.mass = valuee
+  }
+
 
   RandomPunchDirection(direction){
     let pos = this.body.position;
-    let punch_amount = 15
     let forceMagnitude = .005 * this.body.mass;
     Matter.Body.applyForce(this.body, this.body.position, { 
-      x: (forceMagnitude + Common.random() * forceMagnitude) * (direction.x * punch_amount), 
-      y: (-forceMagnitude + Common.random() * -forceMagnitude) * (direction.y * punch_amount)
+      x: (forceMagnitude + Common.random() * forceMagnitude) * (direction.x * this.punch_amount), 
+      y: (-forceMagnitude + Common.random() * -forceMagnitude) * (direction.y * this.punch_amount)
     });
   }
 

@@ -3,33 +3,76 @@ var Engine = Matter.Engine;
 var Render = Matter.Render;
 var World = Matter.World;
 var Bodies = Matter.Bodies;
+var Body = Matter.Body;
 var Common = Matter.Common;
 var Mouse = Matter.Mouse;
 var Constraint = Matter.Constraint;
 var MConstraint = Matter.MouseConstraint;
 
-var img
 var world;
 var engine;
 var mConstraint;
 var mycanvas;
 
 // floor
-var wall;
-var circle;
-var ground;
-var ground2;
+let wall;
+let circle;
+let ground;
+let ground2;
 
 // all boxes
 
 // html button
-var enable_rain_button
-var IsRaining = true;
+let massCircle;
+let punchForce;
+let WallWidth;
+let WallDensity;
 
+function htmlSetup(){
+	// select sliders
+
+	massCircle = select("#massCircle")
+	massCircleVal = select("#massCircleVal")
+	massCircle.input(() => {
+		// update value in html
+		massCircleVal.html(massCircle.value())
+		// real edit in circle object
+		circle.changeMass(massCircle.value())
+	})
+
+	punchForce = select("#punchForce")
+	punchForceVal = select("#punchForceVal")
+	punchForce.input(() => {
+		// update value in html
+		punchForceVal.html(punchForce.value())
+		// real edit in circle object
+		circle.changePunchForce(punchForce.value())
+	})
+
+	wallWidth = select("#WallWidth")
+	wallWidthVal = select("#WallWidthVal")
+	wallWidth.input(() => {
+		// update value in html
+		wallWidthVal.html(wallWidth.value())
+		// real edit in circle object
+		wall.changeWallWidth(wallWidth.value())
+	})
+
+	wallDensity = select("#WallDensity")
+	wallDensityVal = select("#WallDensityVal")
+	wallDensity.input(() => {
+		// update value in html
+		wallDensityVal.html(wallDensity.value())
+		// real edit in circle object
+		wall.changeWallDensity(wallDensity.value())
+	})
+
+}
 
 function setup(){
 	mycanvas = createCanvas(900, 400)
 	mycanvas.parent("#canvasDiv")
+	htmlSetup();
 	// clear all objects btn
 
 	// setup gui
@@ -71,7 +114,7 @@ function mouseWheel(){
 }
 
 
-var isSlowTiming = false;
+let isSlowTiming = false;
 function TimeBottle() {
 
 	if (isSlowTiming){

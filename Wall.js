@@ -24,11 +24,8 @@ class Wall{
             ,density: 2
             ,mass: 10
           }));
-
-
       }
     }
-    
     // in future:
     //this.texture = img
   }
@@ -54,6 +51,28 @@ class Wall{
   // adds block at given location
   addRandomBlock(pos, params = { w:random(30, 60),  h:random(20, 30) }){
     this.boxes.push(new smallBox(pos.x, pos.y, params.w, params.h))
+  }
+
+  changeWallDensity(densVal){
+    this.boxes = this.boxes.map(x => x._changeDensity(densVal))
+  }
+
+  changeWallWidth(widthVal){
+
+    this.clear();
+
+    for (let i = this.x; i < widthVal+this.x; i+=this.delat) {
+      for (let j = this.y; j > this.y-this.h; j-=this.delat) {
+
+        // adding
+        this.boxes.push(new smallBox(i, j, this.delat, this.delat, color(0),
+          {
+            friction: .8
+            ,density: 2
+            ,mass: 10
+          }));
+      }
+    }
   }
 
   shake(){
