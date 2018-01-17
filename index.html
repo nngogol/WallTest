@@ -2,128 +2,96 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <script src="libs/matter.js" type="text/javascript"></script>
-    <script src="libs/quicksettings.js" type="text/javascript"></script>
-    <script src="libs/dat.gui.js" type="text/javascript"></script>
-    <script src="libs/p5.js" type="text/javascript"></script>
-    <script src="libs/p5.gui.js" type="text/javascript"></script>
-    <script src="libs/p5.dom.js" type="text/javascript"></script>
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <style>
-        /* table of keys and their meaning */
-
-        .options, .controls{
-            display: flex;
-        }
-
-
-        /* for keys */
-
-        .contorl-keys>div {
-            border-top: 1px solid black;
-            border-left: 1px solid black;
-            margin: 0;
-            padding: 0;
-        }
-
-        .contorl-keys div:nth-last-child(1) {
-            border-top: 1px solid black;
-            border-left: 1px solid black;
-            border-bottom: 1px solid black;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* for meaning */
-
-        .contorl-meaning>div {
-            border-top: 1px solid black;
-            border-right: 1px solid black;
-            margin: 0;
-            padding: 0;
-        }
-
-        .contorl-meaning div:nth-last-child(1) {
-            border-top: 1px solid black;
-            border-right: 1px solid black;
-            border-bottom: 1px solid black;
-            margin: 0;
-            padding: 0;
-        }
-
-        button {
-            margin: 10px;
-        }
-    </style>
-
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="js/p5Stuff/matter.js" type="text/javascript"></script>
+	<script src="js/p5Stuff/quicksettings.js" type="text/javascript"></script>
+	<script src="js/p5Stuff/dat.gui.js" type="text/javascript"></script>
+	<script src="js/p5Stuff/core/p5.js" type="text/javascript"></script>
+	<script src="js/p5Stuff/core/p5.gui.js" type="text/javascript"></script>
+	<script src="js/p5Stuff/core/p5.dom.js" type="text/javascript"></script>
+	<!-- CSS -->
+	
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css">
+	<link rel="stylesheet" href="css/myCss.css">
 </head>
 
 <body>
-    <h4>Hello, and welcome to
-        <b>
-            <i>Симулятор физики</i>
-        </b>
-    </h4>
-    <div id="canvasDiv"></div>
-    <div class="options">
-        <ul class="contorl-keys">
-            <div>
-                <b>LClick+drag</b>
-            </div>
-            <div>
-                <b>a</b>
-            </div>
-            <div>
-                <b>r</b>
-            </div>
-            <div>
-                <b>q,w,e</b>
-            </div>
-            <div>
-                <b>d</b>
-                <i>or</i>
-                <b>mouseWheel</b>
-            </div>
-            <div>
-                <b>s</b>
-            </div>
-        </ul>
-        <ul class="contorl-meaning">
-            <div>Тянуть квадратик</div>
-            <div>SLOW-mo </div>
-            <div>Включить дождь </div>
-            <div>Пнуть квадратик</div>
-            <div>Добавить квадратик</div>
-            <div>Удалить все</div>
-        </ul>
-    </div>
-    <div class="controls">
-        <label>Масса Ядра</label>
-        <input type="range" min="1" max="20" value="5" id="massCircle" style="width:200px;">
-        <span id="massCircleVal" style="width:200px;">5</span>
-    </div>
-    <div>
-        <label>Сила Толчка</label>
-        <input type="range" min="1" max="20" value="5" id="punchForce" style="width:200px;">
-        <span id="punchForceVal" style="width:200px;">5</span>
-    </div>
-    <div>
-        <label>Ширина стенки</label>
-        <input type="range" min="10" max="200" value="30" step="10" id="WallWidth" style="width:200px;">
-        <span id="WallWidthVal" style="width:200px;">5</span>
-    </div>
-    <div>
-        <label>Густота стенки</label>
-        <input type="range" min="0.001" max="10" value="1" step="0.01" id="WallDensity" style="width:200px;">
-        <span id="WallDensityVal" style="width:200px;">5</span>
-    </div>
-    <script src="smallBox.js" type="text/javascript"></script>
-    <script src="Wall.js" type="text/javascript"></script>
-    <script src="Circle.js" type="text/javascript"></script>
-    <script src="Ground.js" type="text/javascript"></script>
-    <script src="sketch.js" type="text/javascript"></script>
+	<p>Hello, and welcome to
+		<b>
+			<i>Симулятор физики</i>
+		</b>
+	</p>
+	<div id="canvasDiv"></div>
+	<div class="bodu">
+		<div class="options">
+			<ul class="contorl-keys">
+				<div>
+					<b>LClick+drag</b>
+				</div>
+				<div>
+					<b>a</b>
+				</div>
+				<div>
+					<b>r</b>
+				</div>
+				<div>
+					<b>q,w,e</b>
+				</div>
+				<div>
+					<b>d</b>
+					<i>or</i>
+					<b>mouseWheel</b>
+				</div>
+				<div>
+					<b>s</b>
+				</div>
+			</ul>
+			<ul class="contorl-meaning">
+				<div>Тянуть квадратик</div>
+				<div>SLOW-mo </div>
+				<div>Включить дождь </div>
+				<div>Пнуть квадратик</div>
+				<div>Добавить квадратик</div>
+				<div>Удалить все</div>
+			</ul>
+		</div>
+		<div class="controls">
+			<div>
+				<label>Масса Ядра</label>
+				<input id="massCircle" data-slider-id='massCircleSlider' type="text" data-slider-min="1" data-slider-max="20" data-slider-step="1" data-slider-value="5"/>
+				<span id="massCircleVal">5</span>
+			</div>
+			<div>
+				<label>Сила Толчка</label>
+				<input id="punchForce" data-slider-id='punchForceSlider' type="text" data-slider-min="1" data-slider-max="20" data-slider-step="1" data-slider-value="5"/>
+				<span id="punchForceVal">5</span>
+			</div>
+			<div>
+				<label>Ширина стенки</label>
+				<input id="WallWidth" data-slider-id='WallWidthSlider' type="text" data-slider-min="1" data-slider-max="220" data-slider-step="5" data-slider-value="50"/>
+				<span id="WallWidthVal">5</span>
+			</div>
+			<div>
+				<label>Густота стенки</label>
+				<input id="WallDensity" data-slider-id='WallDensitySlider' type="text" data-slider-min="0.001" data-slider-max="10" data-slider-step="0.01" data-slider-value="1"/>
+				<span id="WallDensityVal">5</span>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.js"></script>
+
+	<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="js/myJs.js"></script>
+
+	<script src="js/js-fun-part/smallBox.js" type="text/javascript"></script>
+	<script src="js/js-fun-part/Wall.js" type="text/javascript"></script>
+	<script src="js/js-fun-part/Circle.js" type="text/javascript"></script>
+	<script src="js/js-fun-part/Ground.js" type="text/javascript"></script>
+	<script src="sketch.js" type="text/javascript"></script>
 </body>
 
 </html>

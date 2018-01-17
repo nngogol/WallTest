@@ -1,0 +1,62 @@
+.options,
+.controls,
+.bodu {
+	display: flex;
+}
+
+.controls > *{
+	padding: 10px;
+}
+
+#massCircleSlider .slider-selection {
+	background: #BABABA;
+}
+
+#punchForceSlider .slider-selection {
+	background: #BABABA;
+}
+
+#WallWidthSlider .slider-selection {
+	background: #BABABA;
+}
+
+#WallDensitySlider .slider-selection {
+	background: #BABABA;
+}
+/* for keys */
+
+.controls {
+	flex-flow: column;
+	padding: 5px;
+}
+
+.contorl-keys>div {
+	border-top: 1px solid black;
+	border-left: 1px solid black;
+	margin: 0;
+	padding: 0;
+}
+
+.contorl-keys div:nth-last-child(1) {
+	border-top: 1px solid black;
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;
+	margin: 0;
+	padding: 0;
+}
+/* for meaning */
+
+.contorl-meaning>div {
+	border-top: 1px solid black;
+	border-right: 1px solid black;
+	margin: 0;
+	padding: 0;
+}
+
+.contorl-meaning div:nth-last-child(1) {
+	border-top: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	margin: 0;
+	padding: 0;
+}

@@ -33,39 +33,35 @@ function htmlSetup(){
 
 	massCircle = select("#massCircle")
 	massCircleVal = select("#massCircleVal")
-	massCircle.input(() => {
-		// update value in html
-		massCircleVal.html(massCircle.value())
-		// real edit in circle object
-		circle.changeMass(massCircle.value())
-	})
-
+	
 	punchForce = select("#punchForce")
 	punchForceVal = select("#punchForceVal")
-	punchForce.input(() => {
-		// update value in html
-		punchForceVal.html(punchForce.value())
-		// real edit in circle object
-		circle.changePunchForce(punchForce.value())
-	})
-
+	
 	wallWidth = select("#WallWidth")
 	wallWidthVal = select("#WallWidthVal")
-	wallWidth.input(() => {
-		// update value in html
-		wallWidthVal.html(wallWidth.value())
-		// real edit in circle object
-		wall.changeWallWidth(wallWidth.value())
-	})
-
+	
 	wallDensity = select("#WallDensity")
 	wallDensityVal = select("#WallDensityVal")
-	wallDensity.input(() => {
-		// update value in html
-		wallDensityVal.html(wallDensity.value())
-		// real edit in circle object
-		wall.changeWallDensity(wallDensity.value())
-	})
+	
+	$("#massCircle").on("slide", slideEvt => {
+		$("#massCircleVal").text(slideEvt.value);
+		circle.changeMass(slideEvt.value)
+	});
+
+	$("#punchForce").on("slide", slideEvt => {
+		$("#punchForceVal").text(slideEvt.value);
+		circle.changePunchForce(slideEvt.value)
+	});
+
+	$("#WallWidth").on("slide", slideEvt => {
+		$("#WallWidthVal").text(slideEvt.value);
+		wall.changeWallWidth(slideEvt.value)
+	});
+
+	$("#WallDensity").on("slide", slideEvt => {
+		$("#WallDensityVal").text(slideEvt.value);
+		wall.changeWallDensity(slideEvt.value)
+	});
 
 }
 
